@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -31,7 +33,23 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'email' => 'required|unique:users|max:255',
+        ]);
+
+        $data =  new User();
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->password = bcrypt($request->password);
+        $data->save();
+
+        if ($request->role == 'admin') {
+            $data->assignRole('admin');
+        } else {
+            $data->assignRole('user');
+        }
+
+        return redirect()->route('user.index')->with('success', 'Data user berhasil ditambahkan');
     }
 
     /**
@@ -63,6 +81,14 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = User::find($id);
+
+        $photo = $data->photo;
+        if ($photo != null) {
+            Storage::delete($photo);
+        }
+        $data->delete();
+
+        return redirect()->route('user.index')->with('error', 'Data User berhasil dihapus');
     }
 }

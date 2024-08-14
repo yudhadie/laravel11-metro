@@ -21,6 +21,11 @@
         <x-admin.form.input class="col-12 mb-5" label="Nama" name="name" type="text" value="" required />
         <x-admin.form.input class="col-6 mb-5" label="Email" name="email" type="text" value="" required />
         <x-admin.form.input class="col-6 mb-5" label="Password" name="password" type="password" value="" required />
+        <x-admin.form.select-manual label="Role" name="role" value="" collection='' required>
+            <option value=""></option>
+            <option value="admin">admin</option>
+            <option selected value="user">user</option>
+        </x-admin.form.select-manual>
     </x-admin.modal.create>
 
     <x-admin.form.delete />
@@ -68,13 +73,6 @@
     </x-admin.script.table>
     <x-admin.script.validation>
         fields: {
-            'username': {
-                validators: {
-                    notEmpty: {
-                        message: 'Silahkan isi data!'
-                    }
-                }
-            },
             'name': {
                 validators: {
                     notEmpty: {
@@ -93,13 +91,6 @@
                 validators: {
                     notEmpty: {
                         message: 'Silahkan isi password!'
-                    }
-                }
-            },
-            'current_team_id': {
-                validators: {
-                    notEmpty: {
-                        message: 'Silahkan pilih Role!'
                     }
                 }
             },

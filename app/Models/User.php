@@ -50,6 +50,11 @@ class User extends Authenticatable
         ];
     }
 
+    public function getRoleAttribute()
+    {
+        return $this->getRoleNames()->first();
+    }
+
     public function getPhotoProfileAttribute()
     {
         if ($this->photo == null) {
