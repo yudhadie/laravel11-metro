@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Diglactic\Breadcrumbs\Breadcrumbs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -17,7 +18,7 @@ class UserController extends Controller
     {
         return view('admin.setting.user.index',[
             'title' => 'Users',
-            // 'breadcrumbs' => Breadcrumbs::render('user'),
+            'breadcrumbs' => Breadcrumbs::render('user'),
         ]);
     }
 
@@ -70,7 +71,7 @@ class UserController extends Controller
 
         return view('admin.setting.user.edit',[
             'title' => 'Edit Users',
-            // 'breadcrumbs' => Breadcrumbs::render('user.edit',$data),
+            'breadcrumbs' => Breadcrumbs::render('user.edit',$data),
             'data' => $data,
         ]);
     }
