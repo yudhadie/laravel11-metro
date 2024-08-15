@@ -7,7 +7,7 @@ use App\Models\User;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -134,5 +134,17 @@ class UserController extends Controller
         $data->delete();
 
         return redirect()->route('user.index')->with('error', 'Data User berhasil dihapus');
+    }
+
+    public function profile()
+    {
+        $id = Auth::user()->id;
+        $data = User::FindOrFail($id);
+
+        return view('admin.setting.user.profile',[
+            'title' => 'Profile',
+            'breadcrumbs' => Breadcrumbs::render('profile'),
+            'data' => $data,
+        ]);
     }
 }
