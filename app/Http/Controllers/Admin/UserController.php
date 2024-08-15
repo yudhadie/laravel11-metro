@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -65,7 +66,13 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = User::FindOrFail($id);
+
+        return view('admin.setting.user.edit',[
+            'title' => 'Edit Users',
+            // 'breadcrumbs' => Breadcrumbs::render('user.edit',$data),
+            'data' => $data,
+        ]);
     }
 
     /**
@@ -73,7 +80,43 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'email' => 'required|unique:users,email,'.$id,
+        ]);
+
+        $data = User::find($id);
+        $photo = $data->photo;
+
+        if ($request->hasFile('photo')) {
+
+            if ($photo != null) {
+                Storage::delete($photo);
+            }
+
+            $photo = 'uploads/user/'.time().'.'.$request->photo->extension();
+            $request->photo->move(public_path('uploads/user'), $photo);
+        }
+
+        $data->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'photo' => $photo,
+        ]);
+
+        if ($request->role == 'admin') {
+            $data->assignRole('admin');
+        } else {
+            $data->assignRole('user');
+        }
+
+        if ($request->password != null) {
+            $data->password = bcrypt($request->password);
+            $data->update([
+                'password' => bcrypt($request->password),
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Data user berhasil diupdate');
     }
 
     /**
