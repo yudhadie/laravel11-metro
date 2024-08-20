@@ -96,18 +96,18 @@ class UserController extends Controller
                 Storage::delete($photo);
             }
 
-            $photo = $request->file('photo');
-            $location = 'uploads/user/'.time().'.'.$request->photo->extension();
+            $img = $request->file('photo');
+            $photo = 'uploads/user/'.time().'.'.$request->photo->extension();
 
-            $image = ImageManager::imagick()->read(file_get_contents($photo));
+            $image = ImageManager::imagick()->read(file_get_contents($img));
             $image->scale(height: 500);
-            $image->save($location);
+            $image->save($photo);
         }
 
         $data->update([
             'name' => $request->name,
             'email' => $request->email,
-            'photo' => $location,
+            'photo' => $photo,
         ]);
 
         if ($request->role == 'admin') {

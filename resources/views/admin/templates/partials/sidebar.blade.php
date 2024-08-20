@@ -5,7 +5,7 @@
     <x-admin.sidebar.menu-parent menu="Settings" icon="bi-gear" id="menu-setting">
         <x-admin.sidebar.menu-child menu="Users" id="menu-setting-user" href="{{route('user.index')}}" />
     </x-admin.sidebar.menu-parent>
-    {{-- <x-admin.sidebar.menu-parent menu="Information" icon="bi-activity" id="menu-info"> --}}
-        {{-- <x-admin.sidebar.menu-child menu="Activity" id="menu-info-activity" href="{{route('log-activity.index')}}" /> --}}
-    {{-- </x-admin.sidebar.menu-parent> --}}
+    <x-admin.sidebar.menu-parent menu="Information" icon="bi-activity" id="menu-info">
+        <x-admin.sidebar.menu-child menu="Activity" id="menu-info-activity" href="{{route('log-activity.index')}}" />
+    </x-admin.sidebar.menu-parent>
 </x-admin.sidebar.main>
