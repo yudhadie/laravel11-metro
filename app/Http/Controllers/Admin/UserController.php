@@ -8,6 +8,8 @@ use Diglactic\Breadcrumbs\Breadcrumbs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\ImageManager;
+// use Intervention\Image\Drivers\Imagick\Driver;
 
 class UserController extends Controller
 {
@@ -94,14 +96,18 @@ class UserController extends Controller
                 Storage::delete($photo);
             }
 
-            $photo = 'uploads/user/'.time().'.'.$request->photo->extension();
-            $request->photo->move(public_path('uploads/user'), $photo);
+            $photo = $request->file('photo');
+            $location = 'uploads/user/'.time().'.'.$request->photo->extension();
+
+            $image = ImageManager::imagick()->read(file_get_contents($photo));
+            $image->scale(height: 500);
+            $image->save($location);
         }
 
         $data->update([
             'name' => $request->name,
             'email' => $request->email,
-            'photo' => $photo,
+            'photo' => $location,
         ]);
 
         if ($request->role == 'admin') {
