@@ -36,14 +36,14 @@
 
     <!--begin::Footer-->
     <div class="app-sidebar-footer flex-column-auto pt-2 pb-6 px-6" id="kt_app_sidebar_footer">
-        <a href="#"
+        <a href="/"
             class="btn btn-flex flex-center btn-custom btn-primary overflow-hidden text-nowrap px-0 h-40px w-100"
             data-bs-toggle="tooltip"
             data-bs-trigger="hover"
             data-bs-dismiss-="click"
-            title="ini adalah dokumentasi">
+            title="Fontend Website">
             <i class="bi bi-file-text fs-3"></i>
-            <span class="btn-label">Documentation</span>
+            <span class="btn-label">Website</span>
         </a>
     </div>
     <!--end::Footer-->

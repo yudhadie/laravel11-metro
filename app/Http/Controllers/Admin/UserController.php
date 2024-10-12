@@ -107,12 +107,15 @@ class UserController extends Controller
         $data->update([
             'name' => $request->name,
             'email' => $request->email,
+            'active' => $request->active,
             'photo' => $photo,
         ]);
 
         if ($request->role == 'admin') {
+            $data->removeRole('user');
             $data->assignRole('admin');
         } else {
+            $data->removeRole('admin');
             $data->assignRole('user');
         }
 

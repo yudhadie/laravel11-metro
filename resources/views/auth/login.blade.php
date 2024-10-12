@@ -25,7 +25,7 @@
                                 @include('admin.templates.partials.alert')
 
 								<div class="fv-row mb-8">
-									<input type="text" placeholder="Email" name="email" autocomplete="off" class="form-control bg-transparent" value="{{old('identity')}}" autofocus/>
+									<input type="text" placeholder="Email" name="email" autocomplete="off" class="form-control bg-transparent" value="{{old('email')}}" autofocus/>
 								</div>
 								<div class="fv-row mb-5">
 									<input type="password" placeholder="Password" name="password" autocomplete="off" class="form-control bg-transparent" />
@@ -62,7 +62,7 @@
                 form,
                 {
                     fields: {
-                        'identity': {
+                        'email': {
                             validators: {
                                 notEmpty: {
                                     message: 'Silahkan isi username / email!'

@@ -5,17 +5,23 @@ use App\Http\Controllers\Admin\DataController;
 use App\Http\Controllers\Admin\LogActivityController;
 use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\FE\FEWebsiteController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('phpmyinfo', function () {
     phpinfo();
 })->name('phpmyinfo');
 
-Route::middleware('auth')->prefix('dashboard')->group(function () {
+Route::get('/', [FEWebsiteController::class, 'home'])->name('fe.home');
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/profile', [FEWebsiteController::class, 'profile'])->name('fe.profile');
+
+});
+
+Route::group(['prefix' => 'dashboard', 'middleware' => ['role:admin']], function() {
 
     //Dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
