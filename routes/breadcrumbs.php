@@ -45,3 +45,9 @@ Breadcrumbs::for('info', function (BreadcrumbTrail $trail) {
         $trail->parent('activity');
         $trail->push($data->id);
     });
+
+//Test
+Breadcrumbs::for('test', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Test Data','#');
+});

@@ -1,4 +1,4 @@
-<div class="modal fade" id="modal_show" tabindex="-1" aria-hidden="true">
+<div class="modal fade" {{ $attributes }}  tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered mw-650px">
         <div class="modal-content">
             <div class="modal-header">
@@ -13,22 +13,11 @@
                 </div>
             </div>
             <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                <form id="modal_update" class="form" method="post">
-                    {{ csrf_field() }} {{ method_field('PUT') }}
-                    <div class="d-flex flex-column fv-row">
-                        <div class="row">
-                           {{$slot}}
-                        </div>
+                <div class="d-flex flex-column fv-row">
+                    <div class="row">
+                        {{$slot}}
                     </div>
-                    <div class="text-center pt-15">
-                        <button type="reset" class="btn btn-light me-3" data-bs-dismiss="modal">Discard</button>
-                        <button type="submit" class="btn btn-primary" id="modal_update_submit">
-                            <span class="indicator-label">Update</span>
-                            <span class="indicator-progress">Please wait...
-                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                        </button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

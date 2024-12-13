@@ -4,16 +4,17 @@
 
     <x-admin.card.default>
         <x-admin.form.edit action="{{ route('user.update',$data) }}" enctype="multipart/form-data">
+            <x-admin.form.input-right label="Username" name="username" type="text" value="{{ $data->username }}" disabled />
             <x-admin.form.input-right label="Nama" name="name" type="text" value="{{ $data->name }}" required />
             <x-admin.form.input-right label="Email" name="email" type="email" value="{{ $data->email }}" required />
             {{-- <x-admin.form.select-right label="Role" name="current_team_id" value="{{ $data->current_team_id }}" :collection=$teams required /> --}}
-            <x-admin.form.select-right label="Role" name="role" value="{{$data->role}}" collection='' required>
+            <x-admin.form.select-right label="Role" name="active" value="{{$data->role}}" collection='' required>
                 @if ($data->role == 'admin')
                     <option selected value="admin">admin</option>
                     <option value="user">user</option>
                 @else
                     <option value="admin">admin</option>
-                    <option selected value="user">user</option>
+                    <option selected value="2">user</option>
                 @endif
             </x-admin.form.select-right>
             <x-admin.form.select-right label="Status" name="active" value="{{$data->active}}" collection='' required>

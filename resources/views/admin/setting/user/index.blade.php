@@ -18,13 +18,14 @@
     </x-admin.default>
 
     <x-admin.modal.create :title="$title" action="{{ route('user.store') }}" enctype="multipart/form-data">
+        <x-admin.form.input class="col-12 mb-5" label="Username" name="username" type="text" value="" required />
         <x-admin.form.input class="col-12 mb-5" label="Nama" name="name" type="text" value="" required />
         <x-admin.form.input class="col-6 mb-5" label="Email" name="email" type="text" value="" required />
         <x-admin.form.input class="col-6 mb-5" label="Password" name="password" type="password" value="" required />
-        <x-admin.form.select-manual label="Role" name="role" value="" collection='' required>
+        <x-admin.form.select-manual class="col-6 mb-5" label="Role" name="role" value="" collection='' data-dropdown-parent="#modal_add" required>
             <option value=""></option>
             <option value="admin">admin</option>
-            <option selected value="user">user</option>
+            <option value="user">user</option>
         </x-admin.form.select-manual>
     </x-admin.modal.create>
 
@@ -41,7 +42,6 @@
 @endsection
 
 @section('styles')
-
 @endsection
 
 @push('scripts')
@@ -56,8 +56,8 @@
             {data:'name'},
             {data:'email'},
             {data:'role'},
-            {data:'status'},
-            {data:'action', responsivePriority: -1},
+            {data:'active'},
+            {data:'id', responsivePriority: -1},
         ],
         columnDefs: [
             {
@@ -66,34 +66,40 @@
                 width: '40px',
             },
             {
-                targets: [3,4,5],
+                targets: [3],
                 className: 'dt-center',
+            },
+            {
+                targets: -2,
+                className: 'dt-center',
+                render: function(data, type, row) {
+                    if (data == 1) {
+                        return `<span class="text-success">active</span>`;
+                    } else {
+                        return `<span class="text-danger">disabled</span>`;
+                    }
+                }
+            },
+            {
+                targets: -1,
+                className: 'dt-center',
+                render: function(data, type, row) {
+                    return `
+                        <a href="{{route('user.index')}}/${data}/edit" class="btn btn-icon btn-active-light-warning w-30px h-30px me-3" title="Show details">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <x-admin.button.icon href="{{route('user.index')}}/${data}" type="delete" id="btn-delete" data-id="${row.id}" />`;
+                }
             },
         ],
     </x-admin.script.table>
     <x-admin.script.validation>
         fields: {
-            'name': {
-                validators: {
-                    notEmpty: {
-                        message: 'Silahkan isi nama!'
-                    }
-                }
-            },
-            'email': {
-                validators: {
-                    notEmpty: {
-                        message: 'Silahkan isi dengan format email!'
-                    }
-                }
-            },
-            'password': {
-                validators: {
-                    notEmpty: {
-                        message: 'Silahkan isi password!'
-                    }
-                }
-            },
+            'username': {validators: {notEmpty: {message: 'Silahkan isi username!'}}},
+            'name': {validators: {notEmpty: {message: 'Silahkan isi nama!'}}},
+            'email': {validators: {notEmpty: {message: 'Silahkan isi dengan format email!'}}},
+            'password': {validators: {notEmpty: {message: 'Silahkan isi password!'}}},
+            'role': {validators: {notEmpty: {message: 'Silahkan pilih satu!'}}},
         },
     </x-admin.script.validation>
 

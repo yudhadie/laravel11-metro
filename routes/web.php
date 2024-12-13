@@ -4,6 +4,10 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DataController;
 use App\Http\Controllers\Admin\LogActivityController;
 use App\Http\Controllers\Admin\PhotoController;
+use App\Http\Controllers\Admin\TestContentController;
+use App\Http\Controllers\Admin\TestImageController;
+use App\Http\Controllers\Admin\TestModalController;
+use App\Http\Controllers\Admin\TestStandartController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\FE\FEWebsiteController;
 use Illuminate\Support\Facades\Auth;
@@ -36,6 +40,13 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['role:admin']], function
     //Data
     Route::get('/setting/user-data', [DataController::class, 'user'])->name('user.data');
     Route::get('information/log-activity-data', [DataController::class, 'activity'])->name('data.activity');
+
+    //Test
+    Route::resource('/test-standart', TestStandartController::class);
+    Route::resource('/test-modal', TestModalController::class);
+    Route::resource('/test-image', TestImageController::class);
+    Route::resource('/test-content', TestContentController::class);
+    Route::get('/test-data', [DataController::class, 'test'])->name('test.data');
 
 });
 

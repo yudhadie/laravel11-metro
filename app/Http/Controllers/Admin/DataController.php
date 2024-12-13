@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Activity;
+use App\Models\TestData;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,19 +15,10 @@ class DataController extends Controller
         $data = User::query();
 
         return datatables()->of($data)
-        ->addColumn('action', 'admin.setting.user.action')
         ->addIndexColumn()
-        ->addColumn('status', function($x){
-            if ($x->active == 1) {
-                return'<span class="text-success">Active</span>';
-            }else {
-                return'<span class="text-danger">Inactive</span>';
-            }
-        })
         ->addColumn('role', function($x){
             return $x->role;
         })
-        ->rawColumns(['action','status'])
         ->toJson();
     }
 
@@ -50,6 +42,15 @@ class DataController extends Controller
             // return Carbon::parse($data->created_at)->diffForHumans();
             return $data->created_at->diffForHumans();
         })
+        ->toJson();
+    }
+
+    public function test()
+    {
+        $data = TestData::query();
+
+        return datatables()->of($data)
+        ->addIndexColumn()
         ->toJson();
     }
 }

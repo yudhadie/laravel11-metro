@@ -9,7 +9,7 @@
 						<a href="#" class="mb-7">
 							<img alt="Logo" src="{{asset('assets/media/logos/logo-white.png')}}" />
 						</a>
-						<h2 class="text-white fw-normal m-0">Branding tools designed for your business</h2>
+						{{-- <h2 class="text-white fw-normal m-0">Branding tools designed for your business</h2> --}}
 					</div>
 				</div>
 				<div class="d-flex flex-center w-lg-50 p-10">
@@ -25,10 +25,13 @@
                                 @include('admin.templates.partials.alert')
 
 								<div class="fv-row mb-5">
-									<input type="text" placeholder="Name" name="name" autocomplete="off" class="form-control bg-transparent" value="{{old('name')}}" autofocus/>
+									<input type="text" placeholder="Username" name="username" autocomplete="off" class="form-control bg-transparent" value="{{old('username')}}" autofocus/>
 								</div>
 								<div class="fv-row mb-5">
-									<input type="text" placeholder="Email" name="email" autocomplete="off" class="form-control bg-transparent" value="{{old('email')}}" autofocus/>
+									<input type="text" placeholder="Name" name="name" autocomplete="off" class="form-control bg-transparent" value="{{old('name')}}" />
+								</div>
+								<div class="fv-row mb-5">
+									<input type="text" placeholder="Email" name="email" autocomplete="off" class="form-control bg-transparent" value="{{old('email')}}" />
 								</div>
 								<div class="fv-row mb-5">
 									<input type="password" placeholder="Password" name="password" autocomplete="off" class="form-control bg-transparent" />

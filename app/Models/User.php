@@ -21,7 +21,7 @@ class User extends Authenticatable
         return LogOptions::defaults()
             ->useLogName('Users')
             ->logOnly([
-                'name', 'email','active','photo',
+                'username','name', 'email','active','photo',
             ]);
     }
 
@@ -31,6 +31,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'username',
         'name',
         'email',
         'password',

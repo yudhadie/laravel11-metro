@@ -1,6 +1,6 @@
-<div {{ $attributes }}>
+<div class="{{$class}}">
     @if ($label != '')
-        <label class="fs-6 fw-semibold form-label mb-2">
+        <label class="d-flex align-items-center fs-6 fw-bold mb-2">
             <span class="{{$attributes->has('required') ? 'required' : ''}}" >
                 {{$label}}
             </span>
@@ -17,3 +17,4 @@
        {{$slot}}
     </select>
 </div>
+

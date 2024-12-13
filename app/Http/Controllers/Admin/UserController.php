@@ -38,12 +38,14 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'username' => 'required|unique:users|max:255',
             'email' => 'required|unique:users|max:255',
         ]);
 
         $data =  new User();
         $data->name = $request->name;
         $data->email = $request->email;
+        $data->username = $request->username;
         $data->password = bcrypt($request->password);
         $data->save();
 
@@ -95,7 +97,6 @@ class UserController extends Controller
             if ($photo != null) {
                 Storage::delete($photo);
             }
-
             $img = $request->file('photo');
             $photo = 'uploads/user/'.time().'.'.$request->photo->extension();
 
@@ -112,10 +113,8 @@ class UserController extends Controller
         ]);
 
         if ($request->role == 'admin') {
-            $data->removeRole('user');
             $data->assignRole('admin');
         } else {
-            $data->removeRole('admin');
             $data->assignRole('user');
         }
 
@@ -134,6 +133,10 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
+        if (in_array($id, ['1', '2'])) {
+            return redirect()->route('user.index')->with('error', 'Data dengan ID ini tidak dapat dihapus.');
+        }
+
         $data = User::find($id);
 
         $photo = $data->photo;

@@ -4,6 +4,6 @@
     </label>
     <div class="col-lg-8 fv-row">
         {{$slot}}
-        <input class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" type="{{$type}}" name="{{$name}}" value="{{ $value }}"/>
+        <input class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" type="{{$type}}" name="{{$name}}" value="{{ $value }}" {{$attributes}}/>
     </div>
 </div>
