@@ -2,12 +2,12 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DataController;
-use App\Http\Controllers\Admin\LogActivityController;
-use App\Http\Controllers\Admin\PhotoController;
-use App\Http\Controllers\Admin\TestContentController;
-use App\Http\Controllers\Admin\TestImageController;
-use App\Http\Controllers\Admin\TestModalController;
-use App\Http\Controllers\Admin\TestStandartController;
+use App\Http\Controllers\Admin\information\LogActivityController;
+use App\Http\Controllers\Admin\Setting\PhotoController;
+use App\Http\Controllers\Admin\Test\TestContentController;
+use App\Http\Controllers\Admin\Test\TestImageController;
+use App\Http\Controllers\Admin\Test\TestModalController;
+use App\Http\Controllers\Admin\Test\TestStandartController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\FE\FEWebsiteController;
 use Illuminate\Support\Facades\Auth;
