@@ -9,7 +9,6 @@
 						<a href="#" class="mb-7">
 							<img alt="Logo" src="{{asset('assets/media/logos/logo-white.png')}}" />
 						</a>
-						<h2 class="text-white fw-normal m-0">Branding tools designed for your business</h2>
 					</div>
 				</div>
 				<div class="d-flex flex-center w-lg-50 p-10">
@@ -33,7 +32,7 @@
 										<span class="indicator-progress">Please wait...
 										<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
 									</button>
-									<a href="{{route('dashboard')}}" class="btn btn-light">Cancel</a>
+									<a href="{{route('login')}}" class="btn btn-light">Cancel</a>
 								</div>
 							</form>
 						</div>

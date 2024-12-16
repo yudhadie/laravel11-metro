@@ -39,13 +39,26 @@
                                     </label>
                                 </div>
 
-								<div class="d-grid mb-10">
+								<div class="d-grid mb-3">
 									<button type="submit" id="form_submit" class="btn btn-primary">
 										<span class="indicator-label">Sign In</span>
 										<span class="indicator-progress">Please wait...
 										<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
 									</button>
 								</div>
+                                <div class="row mb-10 text-center">
+                                    <div class="col-6 d-grid">
+                                        <a href="{{route('google_redirect')}}" class="btn btn-primary">
+                                            <i class="bi bi-google"></i> Google
+                                        </a>
+                                    </div>
+                                    <div class="col-6 d-grid">
+                                        {{-- <a href="{{route('facebook_redirect')}}" class="btn btn-primary"> --}}
+                                        <a href="#" class="btn btn-primary">
+                                            <i class="bi bi-facebook"></i> Facebook
+                                        </a>
+                                    </div>
+                                </div>
 								<div class="text-gray-500 text-center fw-semibold fs-6 mb-3">
                                     <a href="{{ route('password.request') }}" class="link-primary">Lupa Password ?</a>
                                 </div>

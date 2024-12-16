@@ -9,6 +9,7 @@
         "diglactic/laravel-breadcrumbs": "^9.0",
         "intervention/image": "^3.8",
         "laravel/framework": "^11.0",
+        "laravel/socialite": "^5.16",
         "laravel/tinker": "^2.9",
         "spatie/laravel-activitylog": "^4.8",
         "spatie/laravel-permission": "^6.9",

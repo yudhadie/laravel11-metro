@@ -9,17 +9,19 @@ use App\Http\Controllers\Admin\Test\TestImageController;
 use App\Http\Controllers\Admin\Test\TestModalController;
 use App\Http\Controllers\Admin\Test\TestStandartController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Auth\SocialliteController;
 use App\Http\Controllers\Web\WebsiteController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
-Route::get('phpmyinfo', function () {
-    phpinfo();
-})->name('phpmyinfo');
 
 Route::get('/', [WebsiteController::class, 'home'])->name('home');
 Route::get('/test', [WebsiteController::class, 'test'])->name('test');
 Route::get('api/test', [WebsiteController::class, 'api_test'])->name('api.test');
+
+//Socialite
+Route::get('/auth/redirect/google', [SocialliteController::class, 'google_redirect'])->name('google_redirect');
+Route::get('/auth/callback/google', [SocialliteController::class, 'google_callback'])->name('google_callback');
+Route::get('/auth/redirect/facebook', [SocialliteController::class, 'facebook_redirect'])->name('facebook_redirect');
+Route::get('/auth/callback/facebook', [SocialliteController::class, 'facebook_callback'])->name('facebook_callback');
 
 Route::middleware('auth')->group(function () {
 

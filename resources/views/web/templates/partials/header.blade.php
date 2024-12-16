@@ -34,7 +34,9 @@
                     </div>
                     <div class="flex-equal text-end ms-1">
                         @auth
-                            <a href="{{route('dashboard')}}" class="btn btn-sm btn-success">Dashboard</a>
+                            @role('admin')
+                                <a href="{{route('dashboard')}}" class="btn btn-sm btn-success">Dashboard</a>
+                            @endrole
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: inline;">
                                 @csrf
                                 <button type="submit" class="btn btn-sm btn-danger">Logout</button>
