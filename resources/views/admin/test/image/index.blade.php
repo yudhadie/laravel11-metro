@@ -89,6 +89,7 @@
             const form = $('#modal_form_form')[0]; // Ambil form sebagai DOM object
             const formData = new FormData(form); // Buat FormData dari form
             const url = $('#modal_form_form').attr('action');
+            $('#modal_form_submit').attr('data-kt-indicator', 'on').prop('disabled', true);
             $.ajax({
                 url: url,
                 type: 'POST',

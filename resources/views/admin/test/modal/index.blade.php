@@ -187,13 +187,13 @@
             const url = form.attr('action');
             const data = form.serialize();
 
-            $('#modal_update_submit').attr('data-kt-indicator', 'on').prop('disabled', true);
+            $('#update_button').attr('data-kt-indicator', 'on').prop('disabled', true);
             $.ajax({
                 url: url,
                 type: 'POST',
                 data: data,
                 success: function (response) {
-                    $('#modal_update_submit').attr('data-kt-indicator', 'off').prop('disabled', false);
+                    $('#update_button').attr('data-kt-indicator', 'off').prop('disabled', false);
                     $('#modal_show').modal('hide');
                     $('.table').DataTable().ajax.reload(null, false);
                     toastr.success('Data berhasil diperbarui!', 'Berhasil', {
@@ -202,7 +202,7 @@
                     });
                 },
                 error: function (xhr) {
-                    $('#modal_update_submit').attr('data-kt-indicator', 'off').prop('disabled', false);
+                    $('#update_button').attr('data-kt-indicator', 'off').prop('disabled', false);
                     if (xhr.status === 422) {
                         const errors = xhr.responseJSON.errors;
                         // Tampilkan pesan error validasi
