@@ -63,34 +63,10 @@
     <x-admin.alert.delete-photo/>
     <x-admin.script.validation>
         fields: {
-            'name': {
-                validators: {
-                    notEmpty: {
-                        message: 'Silahkan isi nama!'
-                    }
-                }
-            },
-            'email': {
-                validators: {
-                    notEmpty: {
-                        message: 'Silahkan isi dengan format email!'
-                    }
-                }
-            },
-            'current_team_id': {
-                validators: {
-                    notEmpty: {
-                        message: 'Silahkan pilih Role!'
-                    }
-                }
-            },
-            'active': {
-                validators: {
-                    notEmpty: {
-                        message: 'Silahkan pilih status!'
-                    }
-                }
-            },
+            'name': {validators: {notEmpty: {message: 'Silahkan isi nama!'}}},
+            'email': {validators: {notEmpty: {message: 'Silahkan isi dengan format email!'}}},
+            'current_team_id': {validators: {notEmpty: {message: 'Silahkan pilih Role!'}}},
+            'active': {validators: {notEmpty: {message: 'Silahkan pilih status!'}}},
         },
     </x-admin.script.validation>
 

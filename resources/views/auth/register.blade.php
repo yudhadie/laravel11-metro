@@ -47,9 +47,9 @@
 										<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
 									</button>
 								</div>
-								{{-- <div class="text-gray-500 text-center fw-semibold fs-6">
-                                    <a href="{{ route('password.request') }}" class="link-primary">Lupa Password ?</a>
-                                </div> --}}
+								<div class="text-gray-500 text-center fw-semibold fs-6">
+                                    <a href="{{ route('login') }}" class="link-primary">Login</a>
+                                </div>
 							</form>
 						</div>
 					</div>
@@ -63,34 +63,11 @@
                 form,
                 {
                     fields: {
-                        'name': {
-                            validators: {
-                                notEmpty: {
-                                    message: 'Silahkan isi name!'
-                                }
-                            }
-                        },
-                        'email': {
-                            validators: {
-                                notEmpty: {
-                                    message: 'Silahkan isi email!'
-                                }
-                            }
-                        },
-                        'password': {
-                            validators: {
-                                notEmpty: {
-                                    message: 'Silahkan isi password!'
-                                }
-                            }
-                        },
-                        'password_confirmation': {
-                            validators: {
-                                notEmpty: {
-                                    message: 'Silahkan isi password!'
-                                }
-                            }
-                        },
+                        'username': {validators: {notEmpty: {message: 'Silahkan isi username!'}}},
+                        'name': {validators: {notEmpty: {message: 'Silahkan isi name!'}}},
+                        'email': {validators: {notEmpty: {message: 'Silahkan isi email!'}}},
+                        'password': {validators: {notEmpty: {message: 'Silahkan isi password!'}}},
+                        'password_confirmation': {validators: {notEmpty: {message: 'Silahkan isi password!'}}},
                     },
 
                     plugins: {

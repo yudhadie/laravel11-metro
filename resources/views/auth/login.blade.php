@@ -46,8 +46,11 @@
 										<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
 									</button>
 								</div>
-								<div class="text-gray-500 text-center fw-semibold fs-6">
+								<div class="text-gray-500 text-center fw-semibold fs-6 mb-3">
                                     <a href="{{ route('password.request') }}" class="link-primary">Lupa Password ?</a>
+                                </div>
+								<div class="text-gray-500 text-center fw-semibold fs-6">
+                                    <a href="{{ route('register') }}" class="link-primary">Register</a>
                                 </div>
 							</form>
 						</div>
@@ -62,20 +65,8 @@
                 form,
                 {
                     fields: {
-                        'email': {
-                            validators: {
-                                notEmpty: {
-                                    message: 'Silahkan isi username / email!'
-                                }
-                            }
-                        },
-                        'password': {
-                            validators: {
-                                notEmpty: {
-                                    message: 'Silahkan isi password!'
-                                }
-                            }
-                        },
+                        'email': {validators: {notEmpty: {message: 'Silahkan isi username / email!'}}},
+                        'password': {validators: {notEmpty: {message: 'Silahkan isi password!'}}},
                     },
 
                     plugins: {

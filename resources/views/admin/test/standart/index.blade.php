@@ -92,20 +92,8 @@
     </x-admin.script.table>
     <x-admin.script.validation>
         fields: {
-            'name': {
-                validators: {
-                    notEmpty: {
-                        message: 'Silahkan isi nama!'
-                    }
-                }
-            },
-            'number': {
-                validators: {
-                    notEmpty: {
-                        message: 'Silahkan isi number!'
-                    }
-                }
-            },
+            'name': {validators: {notEmpty: {message: 'Silahkan isi nama!'}}},
+            'number': {validators: {notEmpty: {message: 'Silahkan isi number!'}}},
         },
     </x-admin.script.validation>
 
