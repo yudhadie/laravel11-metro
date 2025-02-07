@@ -73,11 +73,9 @@
                 targets: -2,
                 className: 'dt-center',
                 render: function(data, type, row) {
-                    if (data == 1) {
-                        return `<span class="text-success">active</span>`;
-                    } else {
-                        return `<span class="text-danger">disabled</span>`;
-                    }
+                    return data == 1
+                        ? `<span class="text-success">Active</span>`
+                        : `<span class="text-danger">Disabled</span>`;
                 }
             },
             {
@@ -85,10 +83,17 @@
                 className: 'dt-center',
                 render: function(data, type, row) {
                     return `
-                        <a href="{{route('user.index')}}/${data}/edit" class="btn btn-icon btn-active-light-warning w-30px h-30px me-3" title="Show details">
+                        <a href="{{ route('user.index') }}/${data}/edit"
+                            class="btn btn-icon btn-active-light-warning w-30px h-30px me-3"
+                            title="Edit User">
                             <i class="bi bi-pencil-square"></i>
                         </a>
-                        <x-admin.button.icon href="{{route('user.index')}}/${data}" type="delete" id="btn-delete" data-id="${row.id}" />`;
+                        <x-admin.button.icon
+                            href="{{ route('user.index') }}/${data}"
+                            type="delete"
+                            id="btn-delete"
+                            data-id="${row.id}" />
+                    `;
                 }
             },
         ],
@@ -97,7 +102,10 @@
         fields: {
             'username': {validators: {notEmpty: {message: 'Silahkan isi username!'}}},
             'name': {validators: {notEmpty: {message: 'Silahkan isi nama!'}}},
-            'email': {validators: {notEmpty: {message: 'Silahkan isi dengan format email!'}}},
+            'email': {validators: {
+                notEmpty: {message: 'Silahkan isi dengan format email!'},
+                emailAddress: {message: 'Silahkan masukkan format email yang benar!'}
+            }},
             'password': {validators: {notEmpty: {message: 'Silahkan isi password!'}}},
             'role': {validators: {notEmpty: {message: 'Silahkan pilih satu!'}}},
         },

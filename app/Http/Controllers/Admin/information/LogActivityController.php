@@ -29,4 +29,18 @@ class LogActivityController extends Controller
             'properties' => json_decode($data->properties),
         ]);
     }
+
+    public function data()
+    {
+        $data = Activity::query()
+            ->with('user')
+            ->select('id', 'log_name', 'description', 'subject_id', 'event', 'causer_id', 'created_at')
+            ->latest();
+
+        return datatables()->of($data)
+            ->addIndexColumn()
+            ->addColumn('user', fn($data) => $data->causer_id ? $data->user->name : '-')
+            ->addColumn('time', fn($data) => $data->created_at->diffForHumans())
+            ->make(true);
+    }
 }

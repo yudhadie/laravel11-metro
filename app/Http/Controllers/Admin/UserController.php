@@ -49,11 +49,7 @@ class UserController extends Controller
         $data->password = bcrypt($request->password);
         $data->save();
 
-        if ($request->role == 'admin') {
-            $data->assignRole('admin');
-        } else {
-            $data->assignRole('user');
-        }
+        $data->syncRoles($request->role);
 
         return redirect()->route('user.index')->with('success', 'Data user berhasil ditambahkan');
     }
@@ -94,12 +90,12 @@ class UserController extends Controller
 
         if ($request->hasFile('photo')) {
 
-            if ($photo != null) {
+            if ($photo && Storage::exists($photo)) {
                 Storage::delete($photo);
             }
+
             $img = $request->file('photo');
             $photo = 'uploads/user/'.time().'.'.$request->photo->extension();
-
             $image = ImageManager::imagick()->read(file_get_contents($img));
             $image->scale(height: 500);
             $image->save($photo);
@@ -112,17 +108,11 @@ class UserController extends Controller
             'photo' => $photo,
         ]);
 
-        if ($request->role == 'admin') {
-            $data->assignRole('admin');
-        } else {
-            $data->assignRole('user');
-        }
+        $data->syncRoles($request->role);
 
-        if ($request->password != null) {
-            $data->password = bcrypt($request->password);
-            $data->update([
-                'password' => bcrypt($request->password),
-            ]);
+        if ($request->filled('password')) {
+            $updateData['password'] = bcrypt($request->password);
+            $data->update($updateData);
         }
 
         return redirect()->back()->with('success', 'Data user berhasil diupdate');
@@ -139,10 +129,10 @@ class UserController extends Controller
 
         $data = User::find($id);
 
-        $photo = $data->photo;
-        if ($photo != null) {
-            Storage::delete($photo);
+        if ($data->photo && Storage::exists($data->photo)) {
+            Storage::delete($data->photo);
         }
+
         $data->delete();
 
         return redirect()->route('user.index')->with('error', 'Data User berhasil dihapus');
@@ -158,5 +148,29 @@ class UserController extends Controller
             'breadcrumbs' => Breadcrumbs::render('profile'),
             'data' => $data,
         ]);
+    }
+
+    public function deletephoto(string $id)
+{
+        $data = User::findOrFail($id);
+        $photo = $data->photo;
+
+        if ($photo && Storage::exists($photo)) {
+            Storage::delete($photo);
+            $data->update(['photo' => null]);
+        }
+
+        return redirect()->back()->with('error', 'Photo Profile berhasil dihapus');
+    }
+
+    public function data()
+    {
+        $data = User::query()
+            ->select('id', 'name', 'email','active');
+
+        return datatables()->of($data)
+            ->addIndexColumn()
+            ->addColumn('role', fn($x) => $x->role)
+            ->make(true);
     }
 }

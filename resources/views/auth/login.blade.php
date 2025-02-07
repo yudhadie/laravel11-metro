@@ -32,7 +32,7 @@
 								</div>
                                 <div class="fv-row mb-10">
                                     <label class="form-check form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" name="remember" value=""/>
+                                        <input class="form-check-input" type="checkbox" name="remember" value="1"/>
                                         <span class="form-check-label">
                                             <div class="text-gray-500 fw-semibold fs-6">Remember</div>
                                         </span>

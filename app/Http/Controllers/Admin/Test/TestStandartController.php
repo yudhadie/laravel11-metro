@@ -83,10 +83,11 @@ class TestStandartController extends Controller
 
     public function data()
     {
-        $data = TestData::query();
+        $data = TestData::query()
+            ->select('id','name','desc','img','number','select');
 
         return datatables()->of($data)
-        ->addIndexColumn()
-        ->toJson();
+            ->addIndexColumn()
+            ->make(true);
     }
 }

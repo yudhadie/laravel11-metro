@@ -1,9 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\DataController;
 use App\Http\Controllers\Admin\information\LogActivityController;
-use App\Http\Controllers\Admin\Setting\PhotoController;
 use App\Http\Controllers\Admin\Test\TestContentController;
 use App\Http\Controllers\Admin\Test\TestImageController;
 use App\Http\Controllers\Admin\Test\TestModalController;
@@ -34,23 +32,20 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['role:admin']], function
     //Dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
-    Route::put('/photo/delete-user-profile/{id}', [PhotoController::class, 'deleteuser'])->name('delete-photo-user');
-
     //Setting
-    Route::resource('setting/user', UserController::class);
+        //User
+        Route::resource('setting/user', UserController::class);
+        Route::get('/setting/user-data', [UserController::class, 'data'])->name('user.data');
+        Route::put('/photo/delete-user-profile/{id}', [UserController::class, 'deletephoto'])->name('delete-photo-user');
     //Information
     Route::resource('information/log-activity', LogActivityController::class);
-
-    //Data
-    Route::get('/setting/user-data', [DataController::class, 'user'])->name('user.data');
-    Route::get('information/log-activity-data', [DataController::class, 'activity'])->name('data.activity');
-
+    Route::get('information/log-activity-data', [LogActivityController::class, 'data'])->name('activity.data');
     //Test
-    Route::resource('/test-standart', TestStandartController::class);
-    Route::resource('/test-modal', TestModalController::class);
-    Route::resource('/test-image', TestImageController::class);
     Route::resource('/test-content', TestContentController::class);
-    Route::get('/test-data', [DataController::class, 'test'])->name('test.data');
+    Route::resource('/test-image', TestImageController::class);
+    Route::resource('/test-modal', TestModalController::class);
+    Route::resource('/test-standart', TestStandartController::class);
+    Route::get('/test-data', [TestStandartController::class, 'data'])->name('test.data');
 
 });
 

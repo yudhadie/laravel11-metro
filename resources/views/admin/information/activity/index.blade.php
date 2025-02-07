@@ -34,7 +34,7 @@
     <x-admin.menu.active menu="menu-info-activity"/>
 
     <x-admin.script.table>
-        ajax: '{{ route('data.activity') }}',
+        ajax: '{{ route('activity.data') }}',
         columns: [
             {data:'DT_RowIndex', orderable: false, searchable: false},
             {data:'user', name:'user.name',orderable: false},
@@ -43,9 +43,6 @@
             {data:'event'},
             {data:'time'},
             {data:'id', responsivePriority: -1},
-        ],
-        order: [
-            [6, 'desc']
         ],
         columnDefs: [
             {

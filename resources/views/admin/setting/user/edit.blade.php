@@ -7,36 +7,23 @@
             <x-admin.form.input-right label="Username" name="username" type="text" value="{{ $data->username }}" disabled />
             <x-admin.form.input-right label="Nama" name="name" type="text" value="{{ $data->name }}" required />
             <x-admin.form.input-right label="Email" name="email" type="email" value="{{ $data->email }}" required />
-            {{-- <x-admin.form.select-right label="Role" name="current_team_id" value="{{ $data->current_team_id }}" :collection=$teams required /> --}}
-            <x-admin.form.select-right label="Role" name="active" value="{{$data->role}}" collection='' required>
-                @if ($data->role == 'admin')
-                    <option selected value="admin">admin</option>
-                    <option value="user">user</option>
-                @else
-                    <option value="admin">admin</option>
-                    <option selected value="2">user</option>
-                @endif
+            <x-admin.form.select-right label="Role" name="role" value="{{$data->role}}" collection='' required>
+                <option value="admin" @selected($data->role == 'admin')>admin</option>
+                <option value="user" @selected($data->role == 'user')>user</option>
             </x-admin.form.select-right>
             <x-admin.form.select-right label="Status" name="active" value="{{$data->active}}" collection='' required>
-                @if ($data->active == 1)
-                    <option selected value="1">Active</option>
-                    <option value="2">Non Active</option>
-                @else
-                    <option value="1">Active</option>
-                    <option selected value="2">Non Active</option>
-                @endif
+                <option value="1" @selected($data->active == 1)>Active</option>
+                <option value="2" @selected($data->active == 2)>Non Active</option>
             </x-admin.form.select-right>
             <x-admin.form.input-right label="Reset Password" name="password" type="password" value=""/>
             <x-admin.form.input-right label="Photo Profile" name="photo" type="file" value="{{ $data->photo }}" accept=".jpeg,.jpg,.png">
-                @if ($data->photo != null)
+                @if (!empty($data->photo))
                     <img class="mw-100 mh-300px card-rounded mb-2" src="{{ asset($data->photo) }}"/>
-                    @isset($data->photo)
-                        <div class="mt-1">
-                            <button class="btn btn-danger btn-sm mb-2" href="{{ route('delete-photo-user',$data->id) }}" id="delete" >
-                                Delete
-                            </button>
-                        </div>
-                    @endisset
+                    <div class="mt-1">
+                        <button class="btn btn-danger btn-sm mb-2" href="{{ route('delete-photo-user',$data->id) }}" id="delete" >
+                            Delete
+                        </button>
+                    </div>
                 @endif
             </x-admin.form.input-right>
 
@@ -64,7 +51,10 @@
     <x-admin.script.validation>
         fields: {
             'name': {validators: {notEmpty: {message: 'Silahkan isi nama!'}}},
-            'email': {validators: {notEmpty: {message: 'Silahkan isi dengan format email!'}}},
+            'email': {validators: {
+                notEmpty: {message: 'Silahkan isi dengan format email!'},
+                emailAddress: {message: 'Silahkan masukkan format email yang benar!'}
+            }},
             'current_team_id': {validators: {notEmpty: {message: 'Silahkan pilih Role!'}}},
             'active': {validators: {notEmpty: {message: 'Silahkan pilih status!'}}},
         },
