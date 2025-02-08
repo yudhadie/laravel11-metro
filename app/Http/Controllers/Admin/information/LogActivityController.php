@@ -34,8 +34,7 @@ class LogActivityController extends Controller
     {
         $data = Activity::query()
             ->with('user')
-            ->select('id', 'log_name', 'description', 'subject_id', 'event', 'causer_id', 'created_at')
-            ->latest();
+            ->select('id', 'log_name', 'description', 'subject_id', 'event', 'causer_id', 'created_at');
 
         return datatables()->of($data)
             ->addIndexColumn()

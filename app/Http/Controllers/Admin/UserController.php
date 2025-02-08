@@ -151,7 +151,7 @@ class UserController extends Controller
     }
 
     public function deletephoto(string $id)
-{
+    {
         $data = User::findOrFail($id);
         $photo = $data->photo;
 

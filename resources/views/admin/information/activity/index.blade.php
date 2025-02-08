@@ -78,6 +78,7 @@
                 }
             },
         ],
+        order: [[6, 'desc']],
     </x-admin.script.table>
 
 @endpush
