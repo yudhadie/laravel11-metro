@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Test\TestContentController;
 use App\Http\Controllers\Admin\Test\TestImageController;
 use App\Http\Controllers\Admin\Test\TestModalController;
 use App\Http\Controllers\Admin\Test\TestStandartController;
+use App\Http\Controllers\Admin\Test\TestTagController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\SocialliteController;
 use App\Http\Controllers\Web\WebsiteController;
@@ -46,6 +47,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['role:admin']], function
     Route::resource('/test-modal', TestModalController::class);
     Route::resource('/test-standart', TestStandartController::class);
     Route::get('/test-data', [TestStandartController::class, 'data'])->name('test.data');
+    Route::resource('/test-tag', TestTagController::class);
+    Route::get('/test-tag-data', [TestTagController::class, 'data'])->name('tag.data');
 
 });
 

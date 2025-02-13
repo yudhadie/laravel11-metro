@@ -5,16 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TestData extends Model
+class TestDataTag extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $table = 'test_data';
-
-    public function tag()
-    {
-        return $this->belongsToMany(TestTag::class, 'test_data_tag');
-    }
-
-
+    protected $table = 'test_data_tag';
 }

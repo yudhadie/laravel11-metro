@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Test;
 
 use App\Http\Controllers\Controller;
 use App\Models\TestData;
+use App\Models\TestTag;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Illuminate\Http\Request;
 
@@ -19,9 +20,12 @@ class TestContentController extends Controller
 
     public function create()
     {
+        $tag = TestTag::all();
+
         return view('admin.test.content.create',[
             'title' => 'Add Test Data',
             'breadcrumbs' => Breadcrumbs::render('test'),
+            'tags' => $tag,
         ]);
     }
 
@@ -31,10 +35,12 @@ class TestContentController extends Controller
             'name' => 'required|unique:test_data|max:255',
         ]);
 
-        $data =  new TestData();
+        $data = new TestData();
         $data->name = $request->name;
         $data->desc = $request->desc;
         $data->save();
+
+        $data->tag()->sync($request->tag);
 
         return redirect()->route('test-content.index')->with('success', 'Data berhasil ditambahkan');
     }
@@ -53,11 +59,16 @@ class TestContentController extends Controller
     public function edit(string $id)
     {
         $data = TestData::FindOrFail($id);
+        $tag = TestTag::all();
+        $selectedTags = $data->tag->pluck('id')->toArray();
 
         return view('admin.test.content.edit',[
             'title' => 'Edit Test Data',
             'breadcrumbs' => Breadcrumbs::render('test'),
             'data' => $data,
+            'tags' => $tag,
+            'selectedTags' => $selectedTags,
+
         ]);
     }
 
@@ -75,6 +86,8 @@ class TestContentController extends Controller
             'name' => $request->name,
             'desc' => $request->desc,
         ]);
+
+        $data->tag()->sync($request->tag);
 
         return redirect()->back()->with('success', 'Data berhasil diupdate');
     }
