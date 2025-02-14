@@ -30,7 +30,7 @@
 								<div class="fv-row mb-5">
 									<input type="password" placeholder="Password" name="password" autocomplete="off" class="form-control bg-transparent" />
 								</div>
-                                <div class="fv-row mb-10">
+                                <div class="fv-row mb-8">
                                     <label class="form-check form-check-custom form-check-solid">
                                         <input class="form-check-input" type="checkbox" name="remember" value="1"/>
                                         <span class="form-check-label">
@@ -46,19 +46,6 @@
 										<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
 									</button>
 								</div>
-                                <div class="row mb-10 text-center">
-                                    <div class="col-6 d-grid">
-                                        <a href="{{route('google_redirect')}}" class="btn btn-primary">
-                                            <i class="bi bi-google"></i> Google
-                                        </a>
-                                    </div>
-                                    <div class="col-6 d-grid">
-                                        {{-- <a href="{{route('facebook_redirect')}}" class="btn btn-primary"> --}}
-                                        <a href="#" class="btn btn-primary">
-                                            <i class="bi bi-facebook"></i> Facebook
-                                        </a>
-                                    </div>
-                                </div>
 								<div class="text-gray-500 text-center fw-semibold fs-6 mb-3">
                                     <a href="{{ route('password.request') }}" class="link-primary">Lupa Password ?</a>
                                 </div>

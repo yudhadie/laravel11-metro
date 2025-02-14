@@ -16,12 +16,6 @@ Route::get('/', [WebsiteController::class, 'home'])->name('home');
 Route::get('/test', [WebsiteController::class, 'test'])->name('test');
 Route::get('api/test', [WebsiteController::class, 'api_test'])->name('api.test');
 
-//Socialite
-Route::get('/auth/redirect/google', [SocialliteController::class, 'google_redirect'])->name('google_redirect');
-Route::get('/auth/callback/google', [SocialliteController::class, 'google_callback'])->name('google_callback');
-Route::get('/auth/redirect/facebook', [SocialliteController::class, 'facebook_redirect'])->name('facebook_redirect');
-Route::get('/auth/callback/facebook', [SocialliteController::class, 'facebook_callback'])->name('facebook_callback');
-
 Route::middleware('auth')->group(function () {
 
     Route::get('/profile', [WebsiteController::class, 'profile'])->name('web.profile');
