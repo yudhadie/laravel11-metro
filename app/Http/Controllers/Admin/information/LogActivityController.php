@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\information;
+namespace App\Http\Controllers\Admin\Information;
 
 use App\Http\Controllers\Controller;
 use App\Models\Activity;

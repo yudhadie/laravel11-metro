@@ -119,7 +119,7 @@
 
                 card.innerHTML = `
                     <div class="card">
-                        <img src="${item.img}" class="card-img-top" alt="${item.name}" style="height: 200px; object-fit: cover;">
+                        <img src="${item.photo}" class="card-img-top" alt="${item.name}" style="height: 200px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">${item.name}</h5>
                             <p class="card-text">${item.desc || "No description available."}</p>

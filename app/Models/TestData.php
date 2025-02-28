@@ -16,5 +16,13 @@ class TestData extends Model
         return $this->belongsToMany(TestTag::class, 'test_data_tag');
     }
 
-
+    public function getPhotoAttribute()
+    {
+        if ($this->img == null) {
+            $photo = asset('assets/media/no-image.jpg');
+        } else {
+            $photo = $this->img;
+        }
+        return $photo;
+    }
 }

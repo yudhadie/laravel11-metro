@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\information\LogActivityController;
+use App\Http\Controllers\Admin\Information\LogActivityController;
 use App\Http\Controllers\Admin\Test\TestContentController;
 use App\Http\Controllers\Admin\Test\TestImageController;
 use App\Http\Controllers\Admin\Test\TestModalController;
