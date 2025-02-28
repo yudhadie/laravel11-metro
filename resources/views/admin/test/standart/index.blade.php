@@ -82,9 +82,7 @@
                 className: 'dt-center',
                 render: function(data, type, row) {
                     return `
-                        <a href="{{route('test-standart.index')}}/${data}" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" title="Show details">
-                            <i class="bi bi-eye"></i>
-                        </a>
+                        <x-admin.button.icon href="{{route('test-standart.index')}}/${data}" type="show" />
                         <x-admin.button.icon href="{{route('test-standart.index')}}/${data}" type="delete" id="btn-delete" data-id="${row.id}" />`;
                 }
             },
@@ -92,8 +90,20 @@
     </x-admin.script.table>
     <x-admin.script.validation>
         fields: {
-            'name': {validators: {notEmpty: {message: 'Silahkan isi nama!'}}},
-            'number': {validators: {notEmpty: {message: 'Silahkan isi number!'}}},
+            'name': {
+                validators: {
+                    notEmpty: {
+                        message: 'Silahkan isi nama!'
+                    }
+                }
+            },
+            'number': {
+                validators: {
+                    notEmpty: {
+                        message: 'Silahkan isi number!'
+                    }
+                }
+            },
         },
     </x-admin.script.validation>
 

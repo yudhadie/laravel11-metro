@@ -5,15 +5,6 @@
     <x-admin.card.default>
         <div class="mt-5 mb-5">
             <h2>{{$data->name}}</h2>
-            <div class="my-3">
-                @if ($data->tag)
-                <ul>
-                    @foreach ($data->tag as $item)
-                        <li>{{$item->name}}</li>
-                    @endforeach
-                </ul>
-                @endif
-            </div>
             {!! $data->desc !!}
         </div>
         <x-admin.card.footer>

@@ -5,15 +5,6 @@
     <x-admin.card.default>
         <x-admin.form.edit action="{{ route('test-content.update',$data) }}" >
             <x-admin.form.input class="col-6 mb-5" label="Nama" name="name" type="text" value="{{$data->name}}" required />
-            <x-admin.form.select-manual class="col-6 mb-5" label="Tag" name="tag[]" value="" collection='' multiple >
-                <option value=""></option>
-                @foreach ($tags as $item)
-                    <option value="{{ $item->id }}"
-                        {{ in_array($item->id, $selectedTags) ? 'selected' : '' }}>
-                        {{ $item->name }}
-                    </option>
-                @endforeach
-            </x-admin.form.select-manual>
             <x-admin.form.label class="col-12 mb-5" label="Deskripsi">
                 <textarea name="desc" id="editor" class="tox-target">{{$data->desc}}</textarea>
             </x-admin.form.label>
@@ -36,7 +27,13 @@
     <x-admin.menu.active menu="menu-test-content"/>
     <x-admin.script.validation>
         fields: {
-            'name': {validators: {notEmpty: {message: 'Silahkan isi nama!'}}},
+            'name': {
+                validators: {
+                    notEmpty: {
+                        message: 'Silahkan isi nama!'
+                    }
+                }
+            },
         },
     </x-admin.script.validation>
     <script>

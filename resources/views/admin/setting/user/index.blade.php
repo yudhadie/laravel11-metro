@@ -83,16 +83,8 @@
                 className: 'dt-center',
                 render: function(data, type, row) {
                     return `
-                        <a href="{{ route('user.index') }}/${data}/edit"
-                            class="btn btn-icon btn-active-light-warning w-30px h-30px me-3"
-                            title="Edit User">
-                            <i class="bi bi-pencil-square"></i>
-                        </a>
-                        <x-admin.button.icon
-                            href="{{ route('user.index') }}/${data}"
-                            type="delete"
-                            id="btn-delete"
-                            data-id="${row.id}" />
+                        <x-admin.button.icon type="edit" href="{{ route('user.index') }}/${data}/edit" />
+                        <x-admin.button.icon type="delete" href="{{ route('user.index') }}/${data}" id="btn-delete" data-id="${row.id}" />
                     `;
                 }
             },

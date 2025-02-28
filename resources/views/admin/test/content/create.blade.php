@@ -9,12 +9,6 @@
             <div class="d-flex flex-column fv-row mt-5">
                 <div class="row">
                     <x-admin.form.input class="col-6 mb-5" label="Nama" name="name" type="text" value="" required />
-                    <x-admin.form.select-manual class="col-6 mb-5" label="Tag" name="tag[]" value="" collection='' multiple >
-                        <option value=""></option>
-                        @foreach ($tags as $item)
-                        <option value="{{$item->id}}">{{$item->name}}</option>
-                        @endforeach
-                    </x-admin.form.select-manual>
                     <x-admin.form.label class="col-12 mb-5" label="Deskripsi">
                         <textarea name="desc" id="editor" class="tox-target"></textarea>
                     </x-admin.form.label>
@@ -39,7 +33,13 @@
     <x-admin.menu.active menu="menu-test-content"/>
     <x-admin.script.validation>
         fields: {
-            'name': {validators: {notEmpty: {message: 'Silahkan isi nama!'}}},
+            'name': {
+                validators: {
+                    notEmpty: {
+                        message: 'Silahkan isi nama!'
+                    }
+                }
+            },
         },
     </x-admin.script.validation>
     <script>
